@@ -1,0 +1,77 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "aia-compliance"
+version = "0.1.0"
+description = "Python library for EU AI Act (2024/1689) compliance assessment"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+    { name = "SoberanIA", email = "info@soberania.ai" },
+]
+keywords = [
+    "ai-act",
+    "compliance",
+    "eu-ai-act",
+    "artificial-intelligence",
+    "regulation",
+    "aesia",
+    "risk-assessment",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Legal Industry",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Office/Business :: Financial :: Accounting",
+]
+dependencies = []
+
+[project.optional-dependencies]
+postgres = ["sqlalchemy>=2.0", "psycopg2-binary>=2.9"]
+dev = [
+    "pytest>=7.4",
+    "pytest-cov>=4.1",
+    "black>=23.0",
+    "ruff>=0.1",
+    "mypy>=1.5",
+]
+
+[project.urls]
+Homepage    = "https://github.com/SoberanIA-ai/aia-compliance"
+Documentation = "https://github.com/SoberanIA-ai/aia-compliance#readme"
+Repository  = "https://github.com/SoberanIA-ai/aia-compliance"
+Issues      = "https://github.com/SoberanIA-ai/aia-compliance/issues"
+Changelog   = "https://github.com/SoberanIA-ai/aia-compliance/blob/main/CHANGELOG.md"
+
+[tool.hatch.version]
+path = "aia_compliance/__init__.py"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts   = "--cov=aia_compliance --cov-report=term-missing --cov-fail-under=90"
+
+[tool.coverage.run]
+source = ["aia_compliance"]
+omit   = ["tests/*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP"]
+
+[tool.mypy]
+python_version = "3.10"
+strict = true
